@@ -1,0 +1,166 @@
+!!python/object:ml_collections.config_dict.config_dict.ConfigDict
+_convert_dict: true
+_fields:
+  action_limit_method: tanh
+  env_args: !!python/object:ml_collections.config_dict.config_dict.ConfigDict
+    _convert_dict: true
+    _fields:
+      config: !!python/object:ml_collections.config_dict.config_dict.ConfigDict
+        _convert_dict: true
+        _fields:
+          action_high: !!python/object/apply:numpy.core.multiarray._reconstruct
+            args:
+            - &id001 !!python/name:numpy.ndarray ''
+            - !!python/tuple
+              - 0
+            - !!binary |
+              Yg==
+            state: !!python/tuple
+            - 1
+            - !!python/tuple
+              - 8
+            - &id002 !!python/object/apply:numpy.dtype
+              args:
+              - f8
+              - false
+              - true
+              state: !!python/tuple
+              - 3
+              - <
+              - null
+              - null
+              - null
+              - -1
+              - -1
+              - 0
+            - false
+            - !!binary |
+              AAAAAAAAEEAAAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D+u
+              R+F6FK7vPw==
+          action_low: !!python/object/apply:numpy.core.multiarray._reconstruct
+            args:
+            - *id001
+            - !!python/tuple
+              - 0
+            - !!binary |
+              Yg==
+            state: !!python/tuple
+            - 1
+            - !!python/tuple
+              - 8
+            - *id002
+            - false
+            - !!binary |
+              /Knx0k1iUD8AAAAAAADwvwAAAAAAAPC/AAAAAAAA8L8AAAAAAADwvwAAAAAAAPC/AAAAAAAA8L97
+              FK5H4XqEPw==
+          action_penalty_weight: 0.0
+          actions:
+          - phase
+          alive_bonus: 3
+          foot_friction: 0.5
+          high_level_dt: 0.05
+          init_phase: !!python/object/apply:numpy.core.multiarray._reconstruct
+            args:
+            - *id001
+            - !!python/tuple
+              - 0
+            - !!binary |
+              Yg==
+            state: !!python/tuple
+            - 1
+            - !!python/tuple
+              - 4
+            - *id002
+            - false
+            - !!binary |
+              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+          mass_ratio: 1.8
+          mpc_foot_friction: 0.2
+          power_penalty_weight: 0.0025
+          qp_acc_weight: !!python/object/apply:numpy.core.multiarray._reconstruct
+            args:
+            - *id001
+            - !!python/tuple
+              - 0
+            - !!binary |
+              Yg==
+            state: !!python/tuple
+            - 1
+            - !!python/tuple
+              - 6
+            - *id002
+            - false
+            - !!binary |
+              AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAAJEAAAAAAAAAkQAAAAAAAAPA/
+          speed_penalty_type: relative
+          speed_penalty_weight: 1.0
+          speed_profile: !!python/tuple
+          - !!python/object/apply:numpy.core.multiarray._reconstruct
+            args:
+            - *id001
+            - !!python/tuple
+              - 0
+            - !!binary |
+              Yg==
+            state: !!python/tuple
+            - 1
+            - !!python/tuple
+              - 5
+            - !!python/object/apply:numpy.dtype
+              args:
+              - i8
+              - false
+              - true
+              state: !!python/tuple
+              - 3
+              - <
+              - null
+              - null
+              - null
+              - -1
+              - -1
+              - 0
+            - false
+            - !!binary |
+              AAAAAAAAAAAPAAAAAAAAABQAAAAAAAAAFQAAAAAAAAAWAAAAAAAAAA==
+          - !!python/object/apply:numpy.core.multiarray._reconstruct
+            args:
+            - *id001
+            - !!python/tuple
+              - 0
+            - !!binary |
+              Yg==
+            state: !!python/tuple
+            - 1
+            - !!python/tuple
+              - 5
+              - 4
+            - *id002
+            - false
+            - !!binary |
+              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAA
+              AAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+          use_cot: true
+          use_full_observation: false
+          use_mpc_stance_controller: true
+          vel_estimation_ratio:
+          - 0.8
+          - 1.2
+        _locked: true
+        _type_safe: true
+      show_gui: false
+      use_real_robot: false
+    _locked: true
+    _type_safe: true
+  env_constructor: !!python/name:src.intermediate_envs.gait_change_env.GaitChangeEnv ''
+  eval_every: 10
+  filter: NoFilter
+  hidden_layer_size: 256
+  logdir: logs/main_result_reproduce/2021_10_29_01_29_51
+  num_hidden_layers: 1
+  num_iters: 10000
+  policy_constructor: !!python/name:src.agents.ars.policies.NNPolicy ''
+  rollout_length: 400
+_locked: true
+_type_safe: true
