@@ -2,7 +2,7 @@
 from ml_collections import ConfigDict
 import numpy as np
 
-from src.agents.ars import policies
+from src.agents.cmaes import policies
 from src.intermediate_envs.configs import pronk_deluxe
 from src.intermediate_envs import gait_change_env
 

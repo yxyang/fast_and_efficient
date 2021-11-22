@@ -8,7 +8,7 @@ import numpy as np
 import os
 import ray
 
-from src.agents.ars import logz
+from src.agents.cmaes import logz
 
 
 @ray.remote

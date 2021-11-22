@@ -312,7 +312,9 @@ class GaitChangeEnv(gym.Env):
     gait_generator_state = self._gait_generator.get_observation()  # 16
     base_height = self.robot.base_position[2:]
     robot_orientation = self.robot.base_orientation_rpy
-    robot_velocity = self.robot.base_velocity
+    robot_velocity = np.array(self.robot.base_velocity)
+    if not self.use_real_robot:
+      robot_velocity *= np.random.uniform(0.8, 1.2)
     robot_rpy_rate = self.robot.base_rpy_rate  # 3
     foot_position = self.robot.foot_positions_in_base_frame.flatten()  # 12
     desired_velocity = self.get_desired_speed(self._time_since_reset)

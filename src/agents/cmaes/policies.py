@@ -6,7 +6,7 @@ Benjamin Recht
 '''
 from absl import logging
 import numpy as np
-from src.agents.ars.filter import get_filter
+from src.agents.cmaes.filter import get_filter
 from src.intermediate_envs import gait_change_env
 
 

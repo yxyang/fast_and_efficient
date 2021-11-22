@@ -12,7 +12,7 @@ import ray
 import tensorflow as tf
 import time
 
-from src.agents.ars import logz
+from src.agents.cmaes import logz
 from src.agents.cmaes import rollout_server
 
 config_flags.DEFINE_config_file(

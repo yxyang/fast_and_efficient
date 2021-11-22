@@ -160,7 +160,7 @@ _fields:
   logdir: logs/main_result_reproduce/2021_10_29_01_29_51
   num_hidden_layers: 1
   num_iters: 10000
-  policy_constructor: !!python/name:src.agents.ars.policies.NNPolicy ''
+  policy_constructor: !!python/name:src.agents.cmaes.policies.NNPolicy ''
   rollout_length: 400
 _locked: true
 _type_safe: true
