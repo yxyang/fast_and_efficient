@@ -1,7 +1,7 @@
 """Example of running A1 robot with position control.
 
 To run:
-python -m semantic_locomotion.robots.a1_robot_exercise_example.py
+python -m src.robots.a1_robot_exercise_example.py
 """
 from absl import app
 from absl import flags
