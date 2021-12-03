@@ -49,7 +49,7 @@ def main(_):
     p = bullet_client.BulletClient(connection_mode=pybullet.DIRECT)
   else:
     p = bullet_client.BulletClient(connection_mode=pybullet.GUI)
-  p.setAdditionalSearchPath('semantic_locomotion/data')
+  p.setAdditionalSearchPath('src/data')
   p.loadURDF("plane.urdf")
   p.setGravity(0.0, 0.0, -9.8)
 
