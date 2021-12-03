@@ -10,7 +10,6 @@ cma==3.1.0
 contextlib2==21.6.0
 cycler==0.11.0
 Deprecated==1.2.13
-fast-and-efficient==1.0.0
 filelock==3.4.0
 filterpy==1.4.5
 flatbuffers==2.0
