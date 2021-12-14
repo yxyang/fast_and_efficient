@@ -238,7 +238,7 @@ setup(
     long_description=
     'Convex MPC controller with python bindings for MPC using the PyBullet and the OSQP solver',
     url='https://github.com/yxyang/fast_and_efficient',
-    author='Yuxiang Yang, Tingnan Zhang, Erwin Coumans, Jie Tan, Byron Boots and Rosario Scalise',
+    author='Yuxiang Yang, Tingnan Zhang, Erwin Coumans, Jie Tan, Byron Boots, and Rosario Scalise',
     author_email='yuxiangy@cs.washington.edu',
     license='mixed',
     platforms='any',
