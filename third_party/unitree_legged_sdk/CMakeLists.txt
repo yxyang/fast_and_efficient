@@ -7,7 +7,7 @@ link_directories(lib)
 
 add_compile_options(-std=c++11)
 
-if(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86_64)|(X86_64)|(amd64)|(AMD64)")
   set(EXTRA_LIBS -pthread libunitree_legged_sdk_amd64.so lcm)
 elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "(arm64)|(ARM64)|(aarch64)|(AARCH64)")
   set(EXTRA_LIBS -pthread libunitree_legged_sdk_arm64.so lcm)
