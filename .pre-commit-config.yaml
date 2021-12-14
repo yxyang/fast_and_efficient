@@ -4,7 +4,7 @@ repos:
   - id: pylint
     name: pylint
     entry: pylint
-    args: [semantic_locomotion]
+    args: [src]
     pass_filenames: false
     language: system
     types: [python]
@@ -12,7 +12,7 @@ repos:
   - id: pytype
     name: pytype
     entry: pytype
-    args: [semantic_locomotion, "--config=pytype.cfg"]
+    args: [src, "--config=pytype.cfg"]
     pass_filenames: false
     language: system
     types: [python]
