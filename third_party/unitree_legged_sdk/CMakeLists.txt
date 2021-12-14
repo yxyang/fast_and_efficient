@@ -14,7 +14,7 @@ elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "(arm64)|(ARM64)|(aarch64)|(AARCH64)")
 elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "(arm32)|(ARM32)|(aarch32)|(AARCH32)")
   set(EXTRA_LIBS -pthread libunitree_legged_sdk_arm32.so lcm)
 else()
-  message(FATAL_ERROR "Processor architecture not recognized!")
+  message(FATAL_ERROR "Processor architecture not recognized: ${CMAKE_SYSTEM_PROCESSOR}")
 endif()
 
 set(CMAKE_CXX_FLAGS "-O3")
