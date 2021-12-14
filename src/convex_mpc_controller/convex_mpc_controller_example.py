@@ -1,4 +1,4 @@
-"""Example of whole body controller on A1 robot."""
+"""Example of MPC controller on A1 robot."""
 from absl import app
 from absl import flags
 

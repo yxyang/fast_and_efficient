@@ -74,8 +74,7 @@ class A1Robot(a1.A1):
                     motor_control_mode: MotorControlMode = None) -> None:
     """Clips and then apply the motor commands using the motor model.
     Args:
-      action: np.array. Can be motor angles, torques, hybrid commands,
-        or motor pwms (for Minitaur only).
+      action: np.array. Can be motor angles, torques, or hybrid commands.
       motor_control_mode: A MotorControlMode enum.
     """
     if motor_control_mode is None:

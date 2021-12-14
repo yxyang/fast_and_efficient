@@ -199,7 +199,8 @@ class ConvexMpc {
   // frame. In the intrinsic (body-attached) frame the rotation order is Z -> Y'
   // -> X".
   std::vector<double> ComputeContactForces(
-      std::vector<double> com_position, std::vector<double> com_velocity,
+      std::vector<double> com_position,
+      std::vector<double> com_velocity,
       std::vector<double> com_roll_pitch_yaw,
       std::vector<double> ground_normal_vec,
       std::vector<double> com_angular_velocity,
@@ -572,7 +573,8 @@ ConvexMpc::ConvexMpc(double mass, const std::vector<double>& inertia,
 void ConvexMpc::ResetSolver() { initial_run_ = true; }
 
 std::vector<double> ConvexMpc::ComputeContactForces(
-    std::vector<double> com_position, std::vector<double> com_velocity,
+    std::vector<double> com_position,
+    std::vector<double> com_velocity,
     std::vector<double> com_roll_pitch_yaw,
     std::vector<double> ground_normal_vec,
     std::vector<double> com_angular_velocity,
