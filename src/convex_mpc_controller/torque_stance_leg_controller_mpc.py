@@ -89,6 +89,9 @@ class TorqueStanceLegController:
     self._body_mass = body_mass
     self._num_legs = num_legs
     self._friction_coeffs = np.array(friction_coeffs)
+    if np.any(self._friction_coeffs == 1.):
+      raise ValueError("self._cpp_mpc.compute_contact_forces seg faults when "
+                       "a friction coefficient is equal to 1.")
     body_inertia_list = list(body_inertia)
     self._body_inertia_list = body_inertia_list
     weights_list = list(_MPC_WEIGHTS)
