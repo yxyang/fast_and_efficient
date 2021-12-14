@@ -18,9 +18,8 @@ from src.convex_mpc_controller import gait_generator as gait_generator_lib
 try:
   import mpc_osqp as convex_mpc  # pytype: disable=import-error
 except:  #pylint: disable=W0702
-  print("You need to install semantic_locomotion")
-  print("Either run python3 setup.py install --user in this repo")
-  print("or use pip3 install semantic_locomotion --user")
+  print("You need to install fast_and_efficient")
+  print("Run python3 setup.py install --user in this repo")
   sys.exit()
 
 _FORCE_DIMENSION = 3
@@ -29,20 +28,12 @@ _FORCE_DIMENSION = 3
 # Intuitively, this is the weights of each state dimension when tracking a
 # desired CoM trajectory. The full CoM state is represented by
 # (roll_pitch_yaw, position, angular_velocity, velocity, gravity_place_holder).
-# _MPC_WEIGHTS = (5, 5, 0.2, 0, 0, 10, 0.5, 0.5, 0.2, 0.2, 0.2, 0.1, 0)
-# This worked well for in-place stepping in the real robot.
-# _MPC_WEIGHTS = (5, 5, 0.2, 0, 0, 10, 0., 0., 0.2, 1., 1., 0., 0)
 
-# _MPC_WEIGHTS = (1., 1., 0, 0, 0, 20, 0., 0., .1, .1, .1, .0, 0)
-
-# So far best result is with this one.
-# _MPC_WEIGHTS = (1., 1., 0, 0, 0, 20, 0., 0., .1, 1., 1., .0, 0.)
-
-# Experimental
+# Best results
 _MPC_WEIGHTS = (1., 1., 0, 0, 0, 10, 0., 0., .1, .1, .1, .0, 0)
 
-# Graveyard: these weights don't work at all
-# _MPC_WEIGHTS = (1., 1., 0, 0, 0, 20, 0., 0., 1., 2., 1., .0, 0)
+# These weights also give good results.
+# _MPC_WEIGHTS = (1., 1., 0, 0, 0, 20, 0., 0., .1, 1., 1., .0, 0.)
 
 PLANNING_HORIZON_STEPS = 10
 PLANNING_TIMESTEP = 0.025
