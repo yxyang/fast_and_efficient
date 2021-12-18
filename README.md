@@ -80,7 +80,7 @@ Follow these steps if you want to run policies on the real robot.
 
 1. **Setup correct permissions for non-sudo user**
 
-   Since the Unitree SDK requires memory locking and high process priority, root priority with `sudo` is usually required to execute commands. As an alternative, adding the following lines to `/etc/security/limits.conf` might allow you to run the SDK without `sudo`.
+   Since the Unitree SDK requires memory locking and high process priority, root priority with `sudo` is usually required to execute commands. To run the SDK without `sudo`, write the following to `/etc/security/limits.d/90-unitree.conf`:
 
    ```bash
    <username> soft memlock unlimited
@@ -89,7 +89,7 @@ Follow these steps if you want to run policies on the real robot.
    <username> hard nice eip
    ```
 
-   You may need to reboot the computer for the above changes to get into effect.
+   Log out and log back in for the above changes to take effect.
 
 2. **Connect to the real robot**
 
