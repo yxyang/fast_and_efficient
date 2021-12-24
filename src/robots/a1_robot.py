@@ -278,7 +278,7 @@ class A1Robot(a1.A1):
                 (2 * l_low * l_up), -1, 1))
     l = np.sqrt(
         np.maximum(l_up**2 + l_low**2 + 2 * l_up * l_low * np.cos(theta_knee),
-                   0))
+                   1e-7))
     theta_hip = np.arcsin(np.clip(-x / l, -1, 1)) - theta_knee / 2
     c1 = l_hip * y - l * np.cos(theta_hip + theta_knee / 2) * z
     s1 = l * np.cos(theta_hip + theta_knee / 2) * y + l_hip * z
