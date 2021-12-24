@@ -136,7 +136,7 @@ class Gamepad:
 
   @property
   def speed_command(self):
-    delta_time = np.maximum(time.time() - self.last_timestamp, 1)
+    delta_time = np.minimum(time.time() - self.last_timestamp, 1)
     max_delta_speed = self._max_acc * delta_time
     self.vx = np.clip(self.vx_raw, self.vx - max_delta_speed,
                       self.vx + max_delta_speed)
