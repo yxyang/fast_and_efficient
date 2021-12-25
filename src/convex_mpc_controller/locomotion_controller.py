@@ -273,6 +273,8 @@ class LocomotionController(object):
     self._logs.append(frame)
 
   def _flush_logging(self):
+    if not os.path.exists(self._logdir):
+      os.makedirs(self._logdir)
     filename = 'log_{}.pkl'.format(
         datetime.now().strftime('%Y_%m_%d_%H_%M_%S'))
     pickle.dump(self._logs, open(os.path.join(self._logdir, filename), 'wb'))
