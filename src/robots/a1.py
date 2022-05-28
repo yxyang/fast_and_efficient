@@ -26,7 +26,7 @@ class A1(Robot):
           "RL_toe_fixed",
       ),
       motor_control_mode: MotorControlMode = MotorControlMode.POSITION,
-      mpc_body_height: float = 0.26,
+      mpc_body_height: float = 0.3,
       mpc_body_mass: float = 110 / 9.8,
       mpc_body_inertia: Tuple[float] = np.array(
           (0.017, 0, 0, 0, 0.057, 0, 0, 0, 0.064)) * 10.,

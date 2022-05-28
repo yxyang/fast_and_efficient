@@ -22,6 +22,7 @@ from src.robots import a1
 from src.robots import a1_robot
 from src.robots.motors import MotorCommand
 from src.robots.motors import MotorControlMode
+from src.worlds import abstract_world, plane_world
 
 
 class ControllerMode(enum.Enum):
@@ -56,10 +57,12 @@ class LocomotionController(object):
   individual subcomponent.
 
   """
-  def __init__(self,
-               use_real_robot: bool = False,
-               show_gui: bool = False,
-               logdir: str = 'logs/'):
+  def __init__(
+      self,
+      use_real_robot: bool = False,
+      show_gui: bool = False,
+      logdir: str = 'logs/',
+      world_class: abstract_world.AbstractWorld = plane_world.PlaneWorld):
     """Initializes the class.
 
     Args:
@@ -73,6 +76,7 @@ class LocomotionController(object):
     """
     self._use_real_robot = use_real_robot
     self._show_gui = show_gui
+    self._world_class = world_class
     self._setup_robot_and_controllers()
     self.reset_robot()
     self.reset_controllers()
@@ -104,7 +108,8 @@ class LocomotionController(object):
     p.setTimeStep(0.002)
     p.setGravity(0, 0, -9.8)
     p.setPhysicsEngineParameter(enableConeFriction=0)
-    self.ground_id = p.loadURDF('plane.urdf')
+    world = self._world_class(self.pybullet_client)
+    world.build_world()
 
     # Construct robot class:
     if self._use_real_robot:
@@ -141,7 +146,7 @@ class LocomotionController(object):
           foot_height=0.1,
           use_raibert_heuristic=True)
 
-    mpc_friction_coef = 0.4
+    mpc_friction_coef = 0.6
     self._stance_controller = \
       torque_stance_leg_controller_mpc.TorqueStanceLegController(
           self._robot,

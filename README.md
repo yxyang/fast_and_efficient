@@ -6,6 +6,19 @@ This repository contains the code for the paper ["Fast and Efficient Locomotion 
 * The real-robot interface in Python, which allows sim-to-real switch to be done simply with a command line flag (`--use_real_robot`).
 * An implementation of the [Convex MPC Controller](https://ieeexplore.ieee.org/document/8594448), which achieves robust locomotion on the robot.
 
+## Running Convex MPC Controller:
+
+### Setup the environment
+
+First, make sure the environment is setup by following the steps in the [Setup](#Setup) section.
+
+### Run the code:
+```bash
+python -m src.convex_mpc_controller.convex_mpc_controller_example --show_gui=True --max_time_secs=10 --world=plane
+```
+
+change `world` argument to be one of `[plane, slope, stair, uneven]` for different worlds. The current MPC controller has been tuned for all four worlds.
+
 ## Reproducing Paper Results
 ### Setup the environment
 

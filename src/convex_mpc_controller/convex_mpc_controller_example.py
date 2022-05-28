@@ -4,41 +4,43 @@ from absl import flags
 
 import time
 
-from src.robots import gamepad_reader
 from src.convex_mpc_controller import locomotion_controller
+from src.convex_mpc_controller.locomotion_controller import ControllerMode
+from src.convex_mpc_controller.locomotion_controller import GaitType
+from src.worlds import plane_world, slope_world, stair_world, uneven_world
 
-
-flags.DEFINE_string("logdir", None, "where to log trajectories.")
+flags.DEFINE_string("logdir", "logs", "where to log trajectories.")
 flags.DEFINE_bool("use_real_robot", False,
                   "whether to use real robot or simulation")
-flags.DEFINE_bool("show_gui", False, "whether to show GUI.")
+flags.DEFINE_bool("show_gui", True, "whether to show GUI.")
 flags.DEFINE_float("max_time_secs", 1., "maximum time to run the robot.")
+flags.DEFINE_enum("world", "plane",
+                  ["plane", "slope", "stair", "uneven"],
+                  "world type to choose from.")
 FLAGS = flags.FLAGS
 
+WORLD_NAME_TO_CLASS_MAP = dict(plane=plane_world.PlaneWorld,
+                               slope=slope_world.SlopeWorld,
+                               stair=stair_world.StairWorld,
+                               uneven=uneven_world.UnevenWorld)
 
-def _update_controller(controller, gamepad):
+
+def _update_controller(controller):
   # Update speed
-  lin_speed, rot_speed = gamepad.speed_command
+  lin_speed, rot_speed = [0.3, 0.], 0.
   controller.set_desired_speed(lin_speed, rot_speed)
-  if (gamepad.estop_flagged) and (controller.mode !=
-                                  locomotion_controller.ControllerMode.DOWN):
-    controller.set_controller_mode(locomotion_controller.ControllerMode.DOWN)
-
   # Update controller moce
-  controller.set_controller_mode(gamepad.mode_command)
-
+  controller.set_controller_mode(ControllerMode.WALK)
   # Update gait
-  controller.set_gait(gamepad.gait_command)
+  controller.set_gait(GaitType.TROT)
 
 
 def main(argv):
   del argv  # unused
-  gamepad = gamepad_reader.Gamepad(vel_scale_x=1,
-                                   vel_scale_y=1,
-                                   vel_scale_rot=1,
-                                   max_acc=0.3)
   controller = locomotion_controller.LocomotionController(
-      FLAGS.use_real_robot, FLAGS.show_gui)
+      FLAGS.use_real_robot,
+      FLAGS.show_gui,
+      world_class=WORLD_NAME_TO_CLASS_MAP[FLAGS.world])
 
   try:
     start_time = controller.time_since_reset
@@ -46,12 +48,11 @@ def main(argv):
     while current_time - start_time < FLAGS.max_time_secs:
       current_time = controller.time_since_reset
       time.sleep(0.05)
-      _update_controller(controller, gamepad)
+      _update_controller(controller)
       if not controller.is_safe:
-        gamepad.flag_estop()
+        break
 
   finally:
-    gamepad.stop()
     controller.set_controller_mode(
         locomotion_controller.ControllerMode.TERMINATE)
 
