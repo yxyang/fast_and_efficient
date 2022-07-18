@@ -264,7 +264,8 @@ class LocomotionController(object):
         motor_angles=self._robot.motor_angles,
         base_vel=self._robot.motor_velocities,
         base_vels_body_frame=self._state_estimator.com_velocity_body_frame,
-        base_rpy_rate=self._robot.base_rpy_rate,
+        base_angular_velocity_body_frame=self._robot.
+        base_angular_velocity_body_frame,
         motor_vels=self._robot.motor_velocities,
         motor_torques=self._robot.motor_torques,
         contacts=self._robot.foot_contacts,
