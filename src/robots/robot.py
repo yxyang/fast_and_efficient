@@ -229,7 +229,7 @@ class Robot:
     return self._foot_contact_history
 
   @property
-  def base_rpy_rate(self):
+  def base_angular_velocity_body_frame(self):
     angular_velocity = self._pybullet_client.getBaseVelocity(self.quadruped)[1]
     orientation = self.base_orientation_quat
     _, orientation_inversed = self._pybullet_client.invertTransform(
@@ -314,7 +314,7 @@ class Robot:
     raise NotImplementedError()
 
   @property
-  def hip_positions_in_base_frame(self):
+  def swing_reference_positions(self):
     raise NotImplementedError()
 
   @property

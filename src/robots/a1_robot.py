@@ -189,7 +189,7 @@ class A1Robot(a1.A1):
         [motor.tauEst for motor in self._raw_state.motorState[:12]])
 
   @property
-  def base_rpy_rate(self):
+  def base_angular_velocity_body_frame(self):
     return np.array(self._raw_state.imu.gyroscope)
 
   @property

@@ -188,8 +188,8 @@ class RaibertSwingLegController:
     com_velocity = self._state_estimator.com_velocity_body_frame
     com_velocity = np.array((com_velocity[0], com_velocity[1], 0))
 
-    _, _, yaw_dot = self._robot.base_rpy_rate
-    hip_positions = self._robot.hip_positions_in_base_frame
+    _, _, yaw_dot = self._robot.base_angular_velocity_body_frame
+    hip_positions = self._robot.swing_reference_positions
 
     all_joint_angles = {}
     for leg_id, leg_state in enumerate(self._gait_generator.leg_state):
@@ -231,9 +231,6 @@ class RaibertSwingLegController:
       foot_target_position[:2] += gravity_projection_vector[:2] * multiplier
       # logging.info("Compsenation: {}".format(gravity_projection_vector[:2] *
       #                                        multiplier))
-      # logging.info("Foot Target: {}".format(foot_target_position -
-      #                                       np.array((hip_offset[0],
-      #                                                 hip_offset[1], 0))))
 
       foot_position = _gen_swing_foot_trajectory(
           self._gait_generator.normalized_phase[leg_id],

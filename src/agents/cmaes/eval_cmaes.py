@@ -117,14 +117,14 @@ def main(_):
       rew += step_rew
       states.append(
           dict(
-              desired_speed=env.get_desired_speed(
-                  env.robot.time_since_reset),
+              desired_speed=env.get_desired_speed(env.robot.time_since_reset),
               timestamp=env.robot.time_since_reset,
               base_rpy=env.robot.base_orientation_rpy,
               motor_angles=env.robot.motor_angles,
               base_vel=env.robot.base_velocity,
               base_vels_body_frame=env.state_estimator.com_velocity_body_frame,
-              base_rpy_rate=env.robot.base_rpy_rate,
+              base_angular_velocity_body_frame=env.robot.
+              base_angular_velocity_body_frame,
               motor_vels=env.robot.motor_velocities,
               motor_torques=env.robot.motor_torques,
               contacts=env.robot.foot_contacts,

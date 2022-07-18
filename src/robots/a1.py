@@ -231,7 +231,7 @@ class A1(Robot):
     self._mpc_body_inertia = mpc_body_inertia
 
   @property
-  def hip_positions_in_base_frame(self):
+  def swing_reference_positions(self):
     return (
         (0.17, -0.135, 0),
         (0.17, 0.13, 0),

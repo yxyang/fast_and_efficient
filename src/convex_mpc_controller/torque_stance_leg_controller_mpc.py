@@ -181,7 +181,7 @@ class TorqueStanceLegController:
         # from rpy rate. We use it here as a simple approximation.
         # np.asarray(self._state_estimator.com_rpy_rate_ground_frame,
         #            dtype=np.float64),  #com_angular_velocity
-        self._robot.base_rpy_rate,
+        self._robot.base_angular_velocity_body_frame,
         np.asarray(contact_estimates,
                    dtype=np.float64).flatten(),  # Foot contact states
         np.array(self._robot.foot_positions_in_base_frame.flatten(),
