@@ -10,6 +10,7 @@ from src.convex_mpc_controller.locomotion_controller import GaitType
 from src.worlds import plane_world, slope_world, stair_world, uneven_world
 
 flags.DEFINE_string("logdir", "logs", "where to log trajectories.")
+flags.DEFINE_enum("robot_type", "go1", ["a1", "go1"], "robot class to use.")
 flags.DEFINE_bool("use_real_robot", False,
                   "whether to use real robot or simulation")
 flags.DEFINE_bool("show_gui", True, "whether to show GUI.")
@@ -38,6 +39,7 @@ def _update_controller(controller):
 def main(argv):
   del argv  # unused
   controller = locomotion_controller.LocomotionController(
+      FLAGS.robot_type,
       FLAGS.use_real_robot,
       FLAGS.show_gui,
       world_class=WORLD_NAME_TO_CLASS_MAP[FLAGS.world])

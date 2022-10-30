@@ -18,8 +18,7 @@ from src.convex_mpc_controller import offset_gait_generator
 from src.convex_mpc_controller import raibert_swing_leg_controller
 from src.convex_mpc_controller import torque_stance_leg_controller_mpc
 from src.convex_mpc_controller.gait_configs import crawl, trot, flytrot
-from src.robots import a1
-from src.robots import a1_robot
+from src.robots import a1, a1_robot, go1, go1_robot
 from src.robots.motors import MotorCommand
 from src.robots.motors import MotorControlMode
 from src.worlds import abstract_world, plane_world
@@ -59,6 +58,7 @@ class LocomotionController(object):
   """
   def __init__(
       self,
+      robot_type: str = "a1",
       use_real_robot: bool = False,
       show_gui: bool = False,
       logdir: str = 'logs/',
@@ -74,6 +74,7 @@ class LocomotionController(object):
       stance_leg_controller: Generates motor actions for stance legs.
       clock: A real or fake clock source.
     """
+    self._robot_type = robot_type
     self._use_real_robot = use_real_robot
     self._show_gui = show_gui
     self._world_class = world_class
@@ -112,13 +113,22 @@ class LocomotionController(object):
     world.build_world()
 
     # Construct robot class:
-    if self._use_real_robot:
+    if self._use_real_robot and self._robot_type == 'a1':
       self._robot = a1_robot.A1Robot(
           pybullet_client=p,
           sim_conf=get_sim_conf(),
           motor_control_mode=MotorControlMode.HYBRID)
-    else:
+    elif self._use_real_robot and self._robot_type == 'go1':
+      self._robot = go1_robot.Go1Robot(
+          pybullet_client=p,
+          sim_conf=get_sim_conf(),
+          motor_control_mode=MotorControlMode.HYBRID)
+    elif not self._use_real_robot and self._robot_type == 'a1':
       self._robot = a1.A1(pybullet_client=p,
+                          sim_conf=get_sim_conf(),
+                          motor_control_mode=MotorControlMode.HYBRID)
+    else:
+      self._robot = go1.Go1(pybullet_client=p,
                           sim_conf=get_sim_conf(),
                           motor_control_mode=MotorControlMode.HYBRID)
 
