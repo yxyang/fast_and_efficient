@@ -1,7 +1,6 @@
 """Real Go1 robot class."""
 import ml_collections
 import numpy as np
-import go1_interface
 import time
 from typing import Any
 from typing import Tuple
@@ -38,6 +37,11 @@ class Go1Robot(go1.Go1):
       mpc_body_inertia: Tuple[float] = np.array(
           (0.027, 0, 0, 0, 0.057, 0, 0, 0, 0.064)) * 5.,
   ) -> None:
+    # Since Unitree uses the the same namespace for A1 and Go1 interface,
+    # importing the c++ libraries at the beginning of the code would cause
+    # naming conflicts. Instead, we import the libraries only at class
+    # initialization.
+    import go1_interface
     self._raw_state = go1_interface.LowState()
     self._contact_force_threshold = np.zeros(4)
     # Send an initial zero command in order to receive state information.

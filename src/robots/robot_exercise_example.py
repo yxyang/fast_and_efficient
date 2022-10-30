@@ -44,7 +44,7 @@ def get_sim_conf():
   config.num_solver_iterations: int = 30
   config.init_position: Tuple[float, float, float] = (0., 0., 0.32)
   config.init_rack_position: Tuple[float, float, float] = [0., 0., 1]
-  config.on_rack: bool = True
+  config.on_rack: bool = False
   return config
 
 
@@ -62,7 +62,7 @@ def main(_):
   elif FLAGS.robot_type == 'a1_sim':
     robot = a1.A1(pybullet_client=p, sim_conf=get_sim_conf())
   elif FLAGS.robot_type == 'go1_real':
-    robot = go1_robot.Go1Robot(pybullet_client=p, sim_conf=get_sim_conf)
+    robot = go1_robot.Go1Robot(pybullet_client=p, sim_conf=get_sim_conf())
   else:
     robot = go1.Go1(pybullet_client=p, sim_conf=get_sim_conf())
 
