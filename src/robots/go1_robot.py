@@ -1,30 +1,30 @@
-"""Real A1 robot class."""
+"""Real Go1 robot class."""
 import ml_collections
 import numpy as np
-import a1_interface
+import go1_interface
 import time
 from typing import Any
 from typing import Tuple
 
-from src.robots import a1
+from src.robots import go1
 from src.robots import robot_state_estimator
 from src.robots.motors import MotorControlMode
 from src.robots.motors import MotorCommand
 
 # Constants for analytical FK/IK
-COM_OFFSET = -np.array([0.012731, 0.002186, 0.000515])
-HIP_OFFSETS = np.array([[0.183, -0.047, 0.], [0.183, 0.047, 0.],
-                        [-0.183, -0.047, 0.], [-0.183, 0.047, 0.]
+COM_OFFSET = -np.array([0.011611, 0.004437, 0.000108])
+HIP_OFFSETS = np.array([[0.1881, -0.04675, 0.], [0.1881, 0.04675, 0.],
+                        [-0.1881, -0.04675, 0.], [-0.1881, 0.04675, 0.]
                         ]) + COM_OFFSET
 
 
-class A1Robot(a1.A1):
-  """Class for interfacing with A1 hardware."""
+class Go1Robot(go1.Go1):
+  """Class for interfacing with Go1 hardware."""
   def __init__(
       self,
       pybullet_client: Any = None,
       sim_conf: ml_collections.ConfigDict = None,
-      urdf_path: str = "a1.urdf",
+      urdf_path: str = "go1.urdf",
       base_joint_names: Tuple[str, ...] = (),
       foot_joint_names: Tuple[str, ...] = (
           "FR_toe_fixed",
@@ -38,15 +38,15 @@ class A1Robot(a1.A1):
       mpc_body_inertia: Tuple[float] = np.array(
           (0.027, 0, 0, 0, 0.057, 0, 0, 0, 0.064)) * 5.,
   ) -> None:
-    self._raw_state = a1_interface.LowState()
+    self._raw_state = go1_interface.LowState()
     self._contact_force_threshold = np.zeros(4)
     # Send an initial zero command in order to receive state information.
-    self._robot_interface = a1_interface.RobotInterface(0xff)
+    self._robot_interface = go1_interface.RobotInterface(0xff)
     self._state_estimator = robot_state_estimator.RobotStateEstimator(
         self)
     self._last_reset_time = time.time()
 
-    super(A1Robot, self).__init__(pybullet_client, sim_conf, urdf_path,
+    super(Go1Robot, self).__init__(pybullet_client, sim_conf, urdf_path,
                                   base_joint_names, foot_joint_names,
                                   motor_control_mode, mpc_body_height,
                                   mpc_body_mass, mpc_body_inertia)
@@ -95,14 +95,14 @@ class A1Robot(a1.A1):
       command[3::5] = action.kd
       command[4::5] = action.desired_extra_torque
     else:
-      raise ValueError('Unknown motor control mode for A1 robot: {}.'.format(
+      raise ValueError('Unknown motor control mode for Go1 robot: {}.'.format(
           motor_control_mode))
 
     self._robot_interface.send_command(command)
 
   def reset(self, hard_reset: bool = False, reset_time=1.5):
     """Reset the robot to default motor angles."""
-    super(A1Robot, self).reset(hard_reset, num_reset_steps=0)
+    super(Go1Robot, self).reset(hard_reset, num_reset_steps=0)
     for _ in range(10):
       self._robot_interface.send_command(np.zeros(60, dtype=np.float32))
       time.sleep(0.001)
@@ -213,9 +213,9 @@ class A1Robot(a1.A1):
   def _foot_position_in_hip_frame(self, angles, l_hip_sign=1):
     """Computes foot forward kinematics analytically."""
     theta_ab, theta_hip, theta_knee = angles[0], angles[1], angles[2]
-    l_up = 0.2
-    l_low = 0.2
-    l_hip = 0.08505 * l_hip_sign
+    l_up = 0.213
+    l_low = 0.213
+    l_hip = 0.08 * l_hip_sign
     leg_distance = np.sqrt(l_up**2 + l_low**2 +
                            2 * l_up * l_low * np.cos(theta_knee))
     eff_swing = theta_hip + theta_knee / 2
@@ -232,9 +232,9 @@ class A1Robot(a1.A1):
   def compute_foot_jacobian(self, leg_id):
     """Computes foot jacobian matrix analytically."""
     motor_angles = self.motor_angles[leg_id * 3:(leg_id + 1) * 3]
-    l_up = 0.2
-    l_low = 0.2
-    l_hip = 0.08505 * (-1)**(leg_id + 1)
+    l_up = 0.213
+    l_low = 0.213
+    l_hip = 0.08 * (-1)**(leg_id + 1)
 
     t1, t2, t3 = motor_angles[0], motor_angles[1], motor_angles[2]
     l_eff = np.sqrt(l_up**2 + l_low**2 + 2 * l_up * l_low * np.cos(t3))
@@ -269,9 +269,9 @@ class A1Robot(a1.A1):
                                                  foot_position,
                                                  l_hip_sign=1):
     """Computes foot inverse kinematics analytically."""
-    l_up = 0.2
-    l_low = 0.2
-    l_hip = 0.08505 * l_hip_sign
+    l_up = 0.213
+    l_low = 0.213
+    l_hip = 0.08 * l_hip_sign
     x, y, z = foot_position[0], foot_position[1], foot_position[2]
     theta_knee = -np.arccos(
         np.clip((x**2 + y**2 + z**2 - l_hip**2 - l_low**2 - l_up**2) /

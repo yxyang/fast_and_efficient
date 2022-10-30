@@ -27,7 +27,7 @@ WORLD_NAME_TO_CLASS_MAP = dict(plane=plane_world.PlaneWorld,
 
 def _update_controller(controller):
   # Update speed
-  lin_speed, rot_speed = [0.3, 0.], 0.
+  lin_speed, rot_speed = [0., 0.], 0.
   controller.set_desired_speed(lin_speed, rot_speed)
   # Update controller moce
   controller.set_controller_mode(ControllerMode.WALK)

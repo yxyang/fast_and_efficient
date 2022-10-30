@@ -35,7 +35,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/trunk.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/trunk.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -88,7 +88,7 @@
     <visual>
       <origin rpy="3.14159265359 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/hip.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/hip.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -135,7 +135,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/thigh_mirror.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/thigh_mirror.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -163,7 +163,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/calf.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/calf.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -245,7 +245,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/hip.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/hip.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -292,7 +292,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/thigh.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/thigh.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -320,7 +320,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/calf.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/calf.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -402,7 +402,7 @@
     <visual>
       <origin rpy="3.14159265359 3.14159265359 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/hip.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/hip.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -449,7 +449,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/thigh_mirror.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/thigh_mirror.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -477,7 +477,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/calf.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/calf.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -559,7 +559,7 @@
     <visual>
       <origin rpy="0 3.14159265359 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/hip.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/hip.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -606,7 +606,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/thigh.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/thigh.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -634,7 +634,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/calf.obj" scale="1 1 1"/>
+        <mesh filename="a1_meshes/calf.obj" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
