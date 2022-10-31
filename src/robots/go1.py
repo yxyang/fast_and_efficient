@@ -29,7 +29,7 @@ class Go1(Robot):
       mpc_body_height: float = 0.26,
       mpc_body_mass: float = 110 / 9.8,
       mpc_body_inertia: Tuple[float] = np.array(
-          (0.017, 0, 0, 0, 0.057, 0, 0, 0, 0.064)) * 10.,
+          (0.094, 0, 0, 0, 0.094, 0, 0, 0, 0.094)),
   ) -> None:
     """Constructs an Go1 robot and resets it to the initial states.
         Initializes a tuple with a single MotorGroup containing 12 MotoroModels.
