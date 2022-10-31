@@ -257,7 +257,7 @@ class LocomotionController(object):
     elif self._desired_mode == ControllerMode.STAND:
       logging.info("Standing up.")
       self.reset_robot()
-    else:
+    elif self._desired_mode == ControllerMode.WALK:
       logging.info("Walking.")
       self.reset_controllers()
       self._start_logging()
@@ -334,6 +334,7 @@ class LocomotionController(object):
         self._update_logging(action, qp_sol)
       else:
         logging.info("Running loop terminated, exiting...")
+        self._flush_logging()
         break
 
       # Camera setup:

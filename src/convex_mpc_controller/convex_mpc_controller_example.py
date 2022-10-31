@@ -30,7 +30,7 @@ def _update_controller(controller):
   # Update speed
   lin_speed, rot_speed = [0., 0.], 0.
   controller.set_desired_speed(lin_speed, rot_speed)
-  # Update controller moce
+  # Update controller mode
   controller.set_controller_mode(ControllerMode.WALK)
   # Update gait
   controller.set_gait(GaitType.TROT)

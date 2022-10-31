@@ -33,9 +33,9 @@ class Go1Robot(go1.Go1):
       ),
       motor_control_mode: MotorControlMode = MotorControlMode.POSITION,
       mpc_body_height: float = 0.26,
-      mpc_body_mass: float = 110 / 9.8,
+      mpc_body_mass: float = 120 / 9.8,
       mpc_body_inertia: Tuple[float] = np.array(
-          (0.027, 0, 0, 0, 0.057, 0, 0, 0, 0.064)) * 5.,
+        (0.094, 0, 0, 0, 0.094, 0, 0, 0, 0.094)),
   ) -> None:
     # Since Unitree uses the the same namespace for A1 and Go1 interface,
     # importing the c++ libraries at the beginning of the code would cause

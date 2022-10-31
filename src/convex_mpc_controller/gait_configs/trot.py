@@ -9,7 +9,7 @@ def get_config():
   config.max_side_speed = 0.5
   config.max_rot_speed = 1.
 
-  config.gait_parameters = [2., np.pi, np.pi, 0., 0.5]
+  config.gait_parameters = [2.5, np.pi, np.pi, 0., 0.5]
 
   # MPC-related settings
   config.mpc_body_mass = 110 / 9.8
